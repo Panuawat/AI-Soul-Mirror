@@ -17,7 +17,6 @@ Route::get('/game/start', [GameController::class, 'start'])->name('game.start');
 Route::get('/game/intro', [GameController::class, 'intro'])->name('game.intro');
 Route::get('/game/begin', [GameController::class, 'begin'])->name('game.begin');
 Route::get('/game/play/{id}', [GameController::class, 'play'])->name('game.play');
-Route::get('/game/submit/{id}', [GameController::class, 'submit'])->name('game.submit');
 Route::post('/game/submit/{id}', [GameController::class, 'submit'])->name('game.submit');
 Route::get('/game/loading', [GameController::class, 'loading'])->name('game.loading');
 Route::get('/game/analyze', [GameController::class, 'analyze'])->name('game.analyze');
