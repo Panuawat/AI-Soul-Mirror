@@ -1,0 +1,9 @@
+# Ignore everything in public EXCEPT these
+/public/hot
+/public/storage
+/public/build
+
+# Keep these
+!/public/js
+!/public/css
+!/public/images
