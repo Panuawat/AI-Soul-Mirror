@@ -5,4 +5,4 @@ nixPkgs = ['...', 'php82', 'php82Extensions.pdo_mysql']
 cmds = ['npm run build || true', 'mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs bootstrap/cache && chmod -R a+rw storage']
 
 [start]
-cmd = 'php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT'
+cmd = 'php artisan migrate --force && php artisan db:seed --class=GameSeeder --force && php artisan serve --host=0.0.0.0 --port=$PORT'
