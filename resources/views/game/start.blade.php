@@ -82,6 +82,17 @@
     </div>
     
     <script src="{{ asset('js/game-audio.js') }}"></script>
+    <script>
+        // Toggle feedback modal
+        function toggleFeedbackModal() {
+            const modal = document.getElementById('feedback-modal');
+            if(modal.style.display === 'none') {
+                modal.style.display = 'flex';
+            } else {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
     <script src="{{ asset('js/game-transition.js') }}"></script>
 </body>
 </html>
