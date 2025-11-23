@@ -23,3 +23,13 @@ Route::get('/game/error', [GameController::class, 'error'])->name('game.error');
 // Visitor Stats
 Route::get('/stats', [App\Http\Controllers\StatsController::class, 'index'])->name('stats.index');
 Route::post('/feedback', [App\Http\Controllers\FeedbackController::class, 'store'])->name('feedback.store');
+
+// Temporary: Force re-seed database
+Route::get('/force-seed', function() {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+        return 'Database re-seeded successfully! <a href="/">Go to home</a>';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
