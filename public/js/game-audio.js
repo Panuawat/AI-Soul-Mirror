@@ -19,7 +19,9 @@ class GameAudio {
             this.masterGain.gain.value = this.isMuted ? 0 : 0.4;
             this.masterGain.connect(this.ctx.destination);
 
-            // this.startAmbience();
+            // Start background ambience audio
+            this.startBackgroundAudio();
+
             this.initialized = true;
             this.updateMuteUI();
             console.log("Audio Initialized. State:", this.ctx.state);
@@ -55,9 +57,16 @@ class GameAudio {
     toggleMute() {
         this.isMuted = !this.isMuted;
         localStorage.setItem('game_muted', this.isMuted);
+
         if (this.masterGain) {
             this.masterGain.gain.setTargetAtTime(this.isMuted ? 0 : 0.4, this.ctx.currentTime, 0.1);
         }
+
+        // Control background audio volume
+        if (this.backgroundAudio) {
+            this.backgroundAudio.volume = this.isMuted ? 0 : 0.3;
+        }
+
         this.updateMuteUI();
         return this.isMuted;
     }
@@ -69,6 +78,25 @@ class GameAudio {
             btn.classList.toggle('text-red-500', this.isMuted);
             btn.classList.toggle('text-green-500', !this.isMuted);
         }
+    }
+
+    startBackgroundAudio() {
+        // Load and play background audio file
+        const audio = new Audio('/audio/creeping-dark-ambience.mp3');
+        audio.loop = true;
+        audio.volume = this.isMuted ? 0 : 0.3;
+
+        // Store reference for mute toggle
+        this.backgroundAudio = audio;
+
+        // Play with error handling
+        audio.play().catch(err => {
+            console.log('Background audio autoplay prevented:', err);
+            // Will be played on first user interaction
+            document.addEventListener('click', () => {
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            }, { once: true });
+        });
     }
 
     // --- Procedural Sounds ---
