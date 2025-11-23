@@ -23,7 +23,8 @@ class GameSeeder extends Seeder
         $q1 = Question::create([
             'title' => 'The Awakening',
             'scenario' => 'คุณลืมตาตื่นขึ้นท่ามกลางความมืดมิดไร้ก้นบึ้ง มีเพียงเสียงลมหายใจแผ่วเบาที่รดต้นคอคุณจากด้านหลัง... สัญชาตญาณแรกของคุณคือ?',
-            'image_path' => 'images/game/q1_awakening.jpg',
+            'video_path' => 'images/game/q1_awakening.mp4',
+            'image_path' => 'images/game/q1_awakening.jpg.png',
             'order' => 1
         ]);
         $q1->choices()->createMany([
@@ -37,6 +38,7 @@ class GameSeeder extends Seeder
         $q2 = Question::create([
             'title' => 'The Bridge of Bones',
             'scenario' => 'ทางไปต่อคือสะพานที่สร้างจากโครงกระดูกมนุษย์ มันดูเปราะบางและพร้อมจะพังทลาย ใต้สะพานคือบ่อลาวาสีดำ',
+            'video_path' => 'images/game/q2_bridge.mp4',
             'image_path' => 'images/game/q2_bridge.jpg',
             'order' => 2
         ]);
@@ -51,7 +53,8 @@ class GameSeeder extends Seeder
         $q3 = Question::create([
             'title' => 'Guardian of the Gate',
             'scenario' => 'หมาป่าสามหัวร่างยักษ์ขวางประตูอยู่ หัวซ้ายหลับ หัวขวากำลังแทะกระดูก ส่วนหัวกลางจ้องมองคุณด้วยแววตาที่เจ็บปวด เพราะมีดาบปักคาอยู่',
-            'image_path' => 'images/game/q3_wolf.jpg',
+            'video_path' => 'images/game/q3_wolf.mp4',
+            'image_path' => null,
             'order' => 3
         ]);
         $q3->choices()->createMany([
