@@ -47,7 +47,14 @@ class GameController extends Controller
         // สมมติว่าเรียงตาม order, หาว่าข้อปัจจุบันคือลำดับที่เท่าไหร่
         $currentQuestionNumber = Question::where('order', '<=', $question->order)->count();
 
-        return view('game.play', compact('question', 'totalQuestions', 'currentQuestionNumber'));
+        // หาข้อถัดไปเพื่อ Preload รูปภาพ
+        $nextQuestion = Question::where('order', '>', $question->order)
+                                ->orderBy('order')
+                                ->select('image_path')
+                                ->first();
+        $nextImage = $nextQuestion ? $nextQuestion->image_path : null;
+
+        return view('game.play', compact('question', 'totalQuestions', 'currentQuestionNumber', 'nextImage'));
     }
 
     // 3. รับคำตอบและไปข้อต่อไป

@@ -27,29 +27,6 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col md:flex-row">
-
-    {{-- 1. ส่วนแสดงภาพ (ด้านซ้าย/บน) --}}
-    <div class="w-full md:w-1/2 h-64 md:h-screen relative bg-black border-r border-neutral-800 overflow-hidden group">
-        
-        @if($question->image_path)
-            {{-- เช็คว่านามสกุลไฟล์ลงท้ายด้วย .mp4 หรือไม่ --}}
-            @if(Str::endsWith($question->image_path, '.mp4'))
-                {{-- กรณีเป็น VIDEO --}}
-                <video autoplay loop muted playsinline 
-                       class="w-full h-full object-cover opacity-60 grayscale">
-                    <source src="{{ asset('images/game/' . $question->image_path) }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            @else
-                {{-- กรณีเป็น IMAGE (รูปภาพปกติ) --}}
-                <img src="{{ asset('images/game/' . $question->image_path) }}" alt="Scenario" 
-                     class="w-full h-full object-cover opacity-60 grayscale group-hover:scale-105 transition duration-[20s] ease-linear">
-            @endif
-        @else
-            {{-- กรณีไม่มีไฟล์ --}}
-            <div class="w-full h-full bg-neutral-900 flex items-center justify-center text-neutral-700">
-                [ NO SIGNAL ]
-            </div>
         @endif
         
         {{-- Overlay Gradient --}}
