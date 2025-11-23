@@ -80,6 +80,40 @@
             Power by Gemini 2.5 Flash & Laravel
         </div>
     </div>
+
+    {{-- Feedback Button --}}
+    <button onclick="toggleFeedbackModal()" class="fixed bottom-6 right-6 z-50 bg-neutral-800 hover:bg-neutral-700 text-white px-6 py-3 rounded-lg border border-neutral-600 transition shadow-lg">
+        💬 ให้ Feedback
+    </button>
+
+    {{-- Feedback Modal --}}
+    <div id="feedback-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4" style="display: none;">
+        <div class="bg-neutral-900 border border-neutral-700 rounded-xl p-8 max-w-md w-full">
+            <h3 class="text-2xl font-bold text-white mb-4">ส่ง Feedback</h3>
+            <form action="{{ route('feedback.store') }}" method="POST" class="space-y-4">
+                @csrf
+                
+                <div>
+                    <label class="block text-sm text-neutral-400 mb-2">อีเมล (ถ้าต้องการให้เราติดต่อกลับ)</label>
+                    <input type="email" name="email" class="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-white focus:outline-none focus:border-white">
+                </div>
+                
+                <div>
+                    <label class="block text-sm text-neutral-400 mb-2">ความคิดเห็น *</label>
+                    <textarea name="message" rows="4" required class="w-full bg-neutral-800 border border-neutral-700 rounded px-4 py-2 text-white focus:outline-none focus:border-white" placeholder="บอกเราว่าคุณรู้สึกยังไงกับประสบการณ์นี้..."></textarea>
+                </div>
+                
+                <div class="flex gap-4">
+                    <button type="submit" class="flex-1 bg-white text-black px-6 py-3 rounded font-bold hover:bg-neutral-300 transition">
+                        ส่ง
+                    </button>
+                    <button type="button" onclick="toggleFeedbackModal()" class="px-6 py-3 text-neutral-400 hover:text-white transition">
+                        ยกเลิก
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
     
     <script src="{{ asset('js/game-audio.js') }}"></script>
     <script>
