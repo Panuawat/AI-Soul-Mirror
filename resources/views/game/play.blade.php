@@ -44,24 +44,6 @@
 
     {{-- 1. ส่วนรูปภาพ/วิดีโอ (ด้านซ้าย/บน) --}}
     <div class="w-full md:w-1/2 relative h-[50vh] md:h-auto bg-black overflow-hidden group">
-        
-        {{-- Loading Spinner --}}
-        <div id="media-loader" class="absolute inset-0 z-20 flex items-center justify-center bg-black">
-            <div class="w-12 h-12 border-4 border-neutral-800 border-t-white rounded-full animate-spin"></div>
-        </div>
-
-        @if($question->video_path)
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110" oncanplay="hideLoader()">
-                <source src="{{ $question->video_path }}" type="video/mp4">
-            </video>
-        @else
-            <img src="{{ $question->image_path }}" alt="Scenario Image" class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110" onload="hideLoader()">
-        @endif
-        
-        {{-- Overlay Gradient --}}
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent md:bg-gradient-to-r"></div>
-        
-        <div class="absolute bottom-6 left-6 md:bottom-12 md:left-12 z-10 w-full pr-12">
             <div class="flex items-center space-x-4 mb-2">
                 <span class="text-neutral-500 text-sm tracking-widest uppercase">Scenario {{ $currentQuestionNumber }} / {{ $totalQuestions }}</span>
                 <div class="h-[2px] flex-1 bg-neutral-800 max-w-[100px]">
