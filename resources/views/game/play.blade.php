@@ -24,10 +24,39 @@
             border-left-color: #d4d4d4;
             padding-left: 1.5rem;
         }
+        /* Loading Overlay */
+        #media-loader {
+            transition: opacity 0.5s ease-out;
+        }
     </style>
+    
+    {{-- Preload Next Image --}}
+    @if(isset($nextImage))
+        <link rel="preload" as="image" href="{{ $nextImage }}">
+    @endif
 </head>
 <body class="min-h-screen flex flex-col md:flex-row">
 
+    {{-- Hidden Preloader for Next Image --}}
+    @if(isset($nextImage))
+        <img src="{{ $nextImage }}" style="display:none;" alt="preload">
+    @endif
+
+    {{-- 1. ส่วนรูปภาพ/วิดีโอ (ด้านซ้าย/บน) --}}
+    <div class="w-full md:w-1/2 relative h-[50vh] md:h-auto bg-black overflow-hidden group">
+        
+        {{-- Loading Spinner --}}
+        <div id="media-loader" class="absolute inset-0 z-20 flex items-center justify-center bg-black">
+            <div class="w-12 h-12 border-4 border-neutral-800 border-t-white rounded-full animate-spin"></div>
+        </div>
+
+        @if($question->video_path)
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110" oncanplay="hideLoader()">
+                <source src="{{ $question->video_path }}" type="video/mp4">
+            </video>
+        @else
+            <img src="{{ $question->image_path }}" alt="Scenario Image" class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110" onload="hideLoader()">
+        @endif
         
         {{-- Overlay Gradient --}}
         <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent md:bg-gradient-to-r"></div>
@@ -84,6 +113,18 @@
                 window.gameAudio.init();
             } catch(e) { console.error("Audio init failed", e); }
         }
+
+        // Hide loader when media is ready
+        function hideLoader() {
+            const loader = document.getElementById('media-loader');
+            if(loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 500);
+            }
+        }
+        
+        // Fallback to hide loader after 3s
+        setTimeout(hideLoader, 3000);
 
         // Typewriter Effect
         const text = @json($question->scenario ?? '');
