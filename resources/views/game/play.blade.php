@@ -9,11 +9,6 @@
     <style>
         body { font-family: 'Prompt', sans-serif; background-color: #0f0f0f; color: #e5e5e5; }
         h1, h2 { font-family: 'Cinzel', serif; }
-        .card-glass {
-            background: rgba(20, 20, 20, 0.8);
-            border: 1px solid #333;
-            backdrop-filter: blur(5px);
-        }
         .choice-btn {
             text-align: left;
             transition: all 0.3s;
@@ -24,39 +19,20 @@
             border-left-color: #d4d4d4;
             padding-left: 1.5rem;
         }
-        /* Loading Overlay */
-        #media-loader {
-            transition: opacity 0.5s ease-out;
-        }
     </style>
-    
-    {{-- Preload Next Image --}}
-    @if(isset($nextImage))
-        <link rel="preload" as="image" href="{{ asset($nextImage) }}">
-    @endif
 </head>
 <body class="min-h-screen flex flex-col md:flex-row">
-
-    {{-- Hidden Preloader for Next Image --}}
-    @if(isset($nextImage))
-        <img src="{{ asset($nextImage) }}" style="display:none;" alt="preload">
-    @endif
 
     {{-- 1. ส่วนรูปภาพ/วิดีโอ (ด้านซ้าย/บน) --}}
     <div class="w-full md:w-1/2 relative h-[50vh] md:h-auto bg-black overflow-hidden group">
         
-        {{-- Loading Spinner --}}
-        <div id="media-loader" class="absolute inset-0 z-20 flex items-center justify-center bg-black">
-            <div class="w-12 h-12 border-4 border-neutral-800 border-t-white rounded-full animate-spin"></div>
-        </div>
-
         {{-- Video or Image --}}
         @if($question->video_path)
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110" oncanplay="hideLoader()">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110">
                 <source src="{{ asset($question->video_path) }}" type="video/mp4">
             </video>
-        @else
-            <img src="{{ asset($question->image_path) }}" alt="Scenario Image" class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110" onload="hideLoader()">
+        @elseif($question->image_path)
+            <img src="{{ asset($question->image_path) }}" alt="Scenario" class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110">
         @endif
         
         {{-- Overlay Gradient --}}
@@ -116,18 +92,6 @@
             } catch(e) { console.error("Audio init failed", e); }
         }
 
-        // Hide loader when media is ready
-        function hideLoader() {
-            const loader = document.getElementById('media-loader');
-            if(loader) {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.remove(), 500);
-            }
-        }
-        
-        // Fallback to hide loader after 3s
-        setTimeout(hideLoader, 3000);
-
         // Typewriter Effect
         const text = @json($question->scenario ?? '');
         const textElement = document.getElementById('scenario-text');
@@ -145,7 +109,7 @@
             if (index < text.length) {
                 textElement.innerHTML += text.charAt(index);
                 index++;
-                timer = setTimeout(typeWriter, 30); // Speed: 30ms per char
+                timer = setTimeout(typeWriter, 30);
             } else {
                 isTyping = false;
                 showForm();
@@ -168,14 +132,11 @@
             }
         }
 
-        // Safety fallback: Show form after 5 seconds anyway
         setTimeout(showForm, 5000);
 
-        // Start typing
         if(textElement && formElement) {
             typeWriter();
         } else {
-            console.error("Elements not found");
             showForm();
         }
     </script>
