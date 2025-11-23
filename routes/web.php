@@ -4,9 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SoulMirrorController;
 use App\Http\Controllers\GameController;
 
-Route::get('/', function () {
-    return view('game.start');
-});
+Route::get('/', [GameController::class, 'landing'])->name('landing');
 
 // Routes สำหรับ AI Soul Mirror
 Route::get('/soul-mirror', [SoulMirrorController::class, 'index'])->name('soul.index');

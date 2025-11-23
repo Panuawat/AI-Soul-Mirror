@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Session;
 
 class GameController extends Controller
 {
+    // 0. หน้า Landing Page (หน้าแรกสุด)
+    public function landing()
+    {
+        $lostSouls = \App\Models\Visit::count();
+        return view('game.start', compact('lostSouls'));
+    }
+
     // 1. เริ่มเกม (เข้าสู่ Intro)
     public function start()
     {
@@ -20,7 +27,8 @@ class GameController extends Controller
     // 1.5 หน้า Intro (เนื้อเรื่องก่อนเริ่ม)
     public function intro()
     {
-        return view('game.intro');
+        $lostSouls = \App\Models\Visit::count();
+        return view('game.intro', compact('lostSouls'));
     }
 
     // 1.8 เริ่มต้นคำถามข้อแรก (หลังจากอ่าน Intro จบ)
