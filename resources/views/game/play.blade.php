@@ -1,44 +1,5 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $question->title }}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Prompt:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Prompt', sans-serif; background-color: #0f0f0f; color: #e5e5e5; }
-        h1, h2 { font-family: 'Cinzel', serif; }
-        .choice-btn {
-            text-align: left;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-        .choice-btn:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            border-left-color: #d4d4d4;
-            padding-left: 1.5rem;
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col md:flex-row">
-
-    {{-- 1. ส่วนรูปภาพ/วิดีโอ (ด้านซ้าย/บน) --}}
-    <div class="w-full md:w-1/2 relative h-[50vh] md:h-auto bg-black overflow-hidden group">
-        
-        {{-- Video or Image --}}
-        @if($question->video_path)
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110">
-                <source src="{{ asset($question->video_path) }}" type="video/mp4">
-            </video>
-        @elseif($question->image_path)
-            <img src="{{ asset($question->image_path) }}" alt="Scenario" class="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-[10s] group-hover:scale-110">
-        @endif
-        
-        {{-- Overlay Gradient --}}
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent md:bg-gradient-to-r"></div>
-        
-        {{-- Title & Progress --}}
         <div class="absolute bottom-6 left-6 md:bottom-12 md:left-12 z-10 w-full pr-12">
             <div class="flex items-center space-x-4 mb-2">
                 <span class="text-neutral-500 text-sm tracking-widest uppercase">Scenario {{ $currentQuestionNumber }} / {{ $totalQuestions }}</span>
@@ -90,6 +51,28 @@
             try {
                 window.gameAudio.init();
             } catch(e) { console.error("Audio init failed", e); }
+        }
+
+        // Hide media loader when media is ready
+        function hideMediaLoader() {
+            const loader = document.getElementById('media-loader');
+            if(loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 500);
+            }
+        }
+        
+        // Fallback: hide loader after 3 seconds
+        setTimeout(hideMediaLoader, 3000);
+
+        // Toggle skip button visibility
+        function toggleSkipButton() {
+            const skipContainer = document.getElementById('skip-button-container');
+            if(skipContainer.style.display === 'none') {
+                skipContainer.style.display = 'block';
+            } else {
+                skipContainer.style.display = 'none';
+            }
         }
 
         // Typewriter Effect
