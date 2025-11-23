@@ -50,8 +50,8 @@
                 เข้าสู่มิติ (Start Journey)
             </a>
             
-            <button id="mute-btn" onclick="gameAudio.init(); gameAudio.toggleMute()" class="text-neutral-500 hover:text-white text-sm uppercase tracking-widest transition">
-                🔊 Check Audio
+            <button id="mute-btn" onclick="gameAudio.toggleMute()" class="text-neutral-500 hover:text-white text-sm uppercase tracking-widest transition">
+                🔊 Audio On
             </button>
         </div>
 
@@ -117,6 +117,13 @@
     
     <script src="{{ asset('js/game-audio.js') }}"></script>
     <script>
+        // Auto-start audio on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.gameAudio) {
+                gameAudio.init();
+            }
+        });
+        
         // Toggle feedback modal
         function toggleFeedbackModal() {
             const modal = document.getElementById('feedback-modal');
