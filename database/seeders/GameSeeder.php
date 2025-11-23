@@ -11,11 +11,9 @@ class GameSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. ล้างข้อมูลเก่าออกแบบสะอาด
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Choice::truncate();
-        Question::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // ลบข้อมูลเก่าออก (ใช้ delete แทน truncate เพื่อรองรับ PostgreSQL)
+        Choice::query()->delete();
+        Question::query()->delete();
 
         // ==========================================
         // PHASE 1: การตื่นรู้และการเอาตัวรอด (Survival)
