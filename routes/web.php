@@ -21,28 +21,3 @@ Route::post('/game/submit/{id}', [GameController::class, 'submit'])->name('game.
 Route::get('/game/loading', [GameController::class, 'loading'])->name('game.loading');
 Route::get('/game/analyze', [GameController::class, 'analyze'])->name('game.analyze');
 Route::get('/game/error', [GameController::class, 'error'])->name('game.error');
-
-// Temporary route to force seed database with DEBUG info
-Route::get('/force-seed', function () {
-    try {
-        // Test connection first
-        \Illuminate\Support\Facades\DB::connection()->getPdo();
-        
-        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'GameSeeder', '--force' => true]);
-        return 'Database seeded successfully! You can now play the game.';
-    } catch (\Exception $e) {
-        $config = config('database.connections.mysql');
-        // Mask password
-        if (isset($config['password'])) {
-            $config['password'] = '********';
-        }
-        
-        return response()->json([
-            'status' => 'error',
-            'message' => $e->getMessage(),
-            'db_connection_config' => $config,
-            'env_db_host' => env('DB_HOST'),
-            'env_db_port' => env('DB_PORT'),
-        ], 500);
-    }
-});
