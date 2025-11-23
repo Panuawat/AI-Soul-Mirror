@@ -242,5 +242,3 @@ class GameSeeder extends Seeder
         ]);
     }
 }
-    }
-}
