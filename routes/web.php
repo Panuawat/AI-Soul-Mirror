@@ -21,3 +21,6 @@ Route::post('/game/submit/{id}', [GameController::class, 'submit'])->name('game.
 Route::get('/game/loading', [GameController::class, 'loading'])->name('game.loading');
 Route::get('/game/analyze', [GameController::class, 'analyze'])->name('game.analyze');
 Route::get('/game/error', [GameController::class, 'error'])->name('game.error');
+
+// Visitor Stats
+Route::get('/stats', [App\Http\Controllers\StatsController::class, 'index']);
