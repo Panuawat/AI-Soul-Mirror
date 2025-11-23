@@ -27,7 +27,7 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col md:flex-row">
-        @endif
+
         
         {{-- Overlay Gradient --}}
         <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent md:bg-gradient-to-r"></div>
