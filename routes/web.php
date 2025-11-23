@@ -21,3 +21,13 @@ Route::post('/game/submit/{id}', [GameController::class, 'submit'])->name('game.
 Route::get('/game/loading', [GameController::class, 'loading'])->name('game.loading');
 Route::get('/game/analyze', [GameController::class, 'analyze'])->name('game.analyze');
 Route::get('/game/error', [GameController::class, 'error'])->name('game.error');
+
+// Temporary route to force seed database
+Route::get('/force-seed', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'GameSeeder', '--force' => true]);
+        return 'Database seeded successfully! You can now play the game.';
+    } catch (\Exception $e) {
+        return 'Error seeding database: ' . $e->getMessage();
+    }
+});
