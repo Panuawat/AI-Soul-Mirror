@@ -23,7 +23,7 @@ class GameSeeder extends Seeder
         $q1 = Question::create([
             'title' => 'The Awakening',
             'scenario' => 'คุณลืมตาตื่นขึ้นท่ามกลางความมืดมิดไร้ก้นบึ้ง มีเพียงเสียงลมหายใจแผ่วเบาที่รดต้นคอคุณจากด้านหลัง... สัญชาตญาณแรกของคุณคือ?',
-            'image_path' => 'images/q1_awakening.jpg',
+            'image_path' => 'images/game/q1_awakening.jpg',
             'order' => 1
         ]);
         $q1->choices()->createMany([
@@ -37,7 +37,7 @@ class GameSeeder extends Seeder
         $q2 = Question::create([
             'title' => 'The Bridge of Bones',
             'scenario' => 'ทางไปต่อคือสะพานที่สร้างจากโครงกระดูกมนุษย์ มันดูเปราะบางและพร้อมจะพังทลาย ใต้สะพานคือบ่อลาวาสีดำ',
-            'image_path' => 'images/q2_bridge.jpg',
+            'image_path' => 'images/game/q2_bridge.jpg',
             'order' => 2
         ]);
         $q2->choices()->createMany([
@@ -51,7 +51,7 @@ class GameSeeder extends Seeder
         $q3 = Question::create([
             'title' => 'Guardian of the Gate',
             'scenario' => 'หมาป่าสามหัวร่างยักษ์ขวางประตูอยู่ หัวซ้ายหลับ หัวขวากำลังแทะกระดูก ส่วนหัวกลางจ้องมองคุณด้วยแววตาที่เจ็บปวด เพราะมีดาบปักคาอยู่',
-            'image_path' => 'images/q3_wolf.jpg',
+            'image_path' => 'images/game/q3_wolf.jpg',
             'order' => 3
         ]);
         $q3->choices()->createMany([
@@ -69,7 +69,7 @@ class GameSeeder extends Seeder
         $q4 = Question::create([
             'title' => 'The Phantom Market',
             'scenario' => 'คุณพบตลาดผีสิง พ่อค้าไร้หน้าคนหนึ่งยื่น "ขวดแก้วบรรจุความทรงจำที่หายไปของคุณ" ให้ แลกกับ "นิ้วมือข้างหนึ่ง" ของคุณ',
-            'image_path' => 'images/q4_market.jpg',
+            'image_path' => 'images/game/q4_market.jpg',
             'order' => 4
         ]);
         $q4->choices()->createMany([
@@ -83,7 +83,7 @@ class GameSeeder extends Seeder
         $q5 = Question::create([
             'title' => 'Mirror of Sins',
             'scenario' => 'คุณเดินผ่านห้องกระจกเงา แต่เงาในกระจกไม่ได้ทำตามคุณ มันกำลังแสยะยิ้มและหยิบมีดขึ้นมาจ่อคอตัวเอง',
-            'image_path' => 'images/q5_mirror.jpg',
+            'image_path' => 'images/game/q5_mirrors.jpg',
             'order' => 5
         ]);
         $q5->choices()->createMany([
@@ -97,7 +97,7 @@ class GameSeeder extends Seeder
         $q6 = Question::create([
             'title' => 'The Caged Spirit',
             'scenario' => 'คุณพบวิญญาณเด็กสาวถูกขังในกรงเวทย์มนตร์ เธอบอกว่าถ้าคุณปล่อยเธอ เธอจะมอบแผนที่ทางออกให้ แต่กรงนี้ต้องใช้ "เลือดของผู้ปลดปล่อย" ในการเปิด',
-            'image_path' => 'images/q6_cage.jpg',
+            'image_path' => 'images/game/q6_cage.jpg',
             'order' => 6
         ]);
         $q6->choices()->createMany([
@@ -115,7 +115,7 @@ class GameSeeder extends Seeder
         $q7 = Question::create([
             'title' => 'Library of Forbidden Lore',
             'scenario' => 'หนังสือเล่มหนึ่งลอยลงมาตรงหน้าคุณ หน้าปกเขียนว่า "ความจริงของจักรวาลที่จะทำให้ผู้ที่รู้อาจเป็นบ้าได้"',
-            'image_path' => 'images/q7_library.jpg',
+            'image_path' => 'images/game/q7_library.jpg',
             'order' => 7
         ]);
         $q7->choices()->createMany([
@@ -129,7 +129,7 @@ class GameSeeder extends Seeder
         $q8 = Question::create([
             'title' => 'The Empty Throne',
             'scenario' => 'กลางห้องโถงใหญ่ มีบัลลังก์ทองคำตั้งอยู่ จารึกบอกว่า "ผู้ที่นั่งจะได้รับอำนาจปกครองมิตินี้ แต่ต้องแลกด้วยการโดดเดี่ยวตลอดกาล"',
-            'image_path' => 'images/q8_throne.jpg',
+            'image_path' => 'images/game/q8_throne.jpg',
             'order' => 8
         ]);
         $q8->choices()->createMany([
@@ -143,7 +143,7 @@ class GameSeeder extends Seeder
         $q9 = Question::create([
             'title' => 'The Cursed Blade',
             'scenario' => 'ดาบสีดำสนิทปักอยู่บนแท่นหิน มันแผ่รังสีความชั่วร้ายรุนแรง แต่มันกระซิบว่า "ข้าจะมอบพลังให้เจ้าสังหารศัตรูได้ทุกคน"',
-            'image_path' => 'images/q9_sword.jpg',
+            'image_path' => 'images/game/q9_sword.jpg',
             'order' => 9
         ]);
         $q9->choices()->createMany([
@@ -161,7 +161,7 @@ class GameSeeder extends Seeder
         $q10 = Question::create([
             'title' => 'The Crossroads of Fate',
             'scenario' => 'ทางแยก 4 สายปรากฏขึ้นเบื้องหน้า แต่ละสายนำไปสู่จุดจบที่ต่างกัน',
-            'image_path' => 'images/q10_crossroad.jpg',
+            'image_path' => 'images/game/q10_crossroad.jpg',
             'order' => 10
         ]);
         $q10->choices()->createMany([
@@ -175,7 +175,7 @@ class GameSeeder extends Seeder
         $q11 = Question::create([
             'title' => 'The Ultimate Sacrifice',
             'scenario' => 'ประตูทางออกอยู่ตรงหน้า แต่ต้องทิ้งสิ่งสำคัญที่สุดไว้หนึ่งอย่างเพื่อผ่านไป',
-            'image_path' => 'images/q11_gate.jpg',
+            'image_path' => 'images/game/q11_gate.jpg',
             'order' => 11
         ]);
         $q11->choices()->createMany([
@@ -189,7 +189,7 @@ class GameSeeder extends Seeder
         $q12 = Question::create([
             'title' => 'The Shadow Self',
             'scenario' => 'เงาของคุณลุกขึ้นยืนและพูดว่า "ข้าคือความชั่วร้ายในใจเจ้า ข้าจะยึดร่างเจ้าเดี๋ยวนี้"',
-            'image_path' => 'images/q12_shadow.jpg',
+            'image_path' => 'images/game/q12_shadow.jpg',
             'order' => 12
         ]);
         $q12->choices()->createMany([
@@ -203,7 +203,7 @@ class GameSeeder extends Seeder
         $q13 = Question::create([
             'title' => 'Call of the Void',
             'scenario' => 'ความมืดรอบตัวเริ่มบีบอัดเข้ามา เสียงกระซิบเร่งเร้าให้คุณยอมแพ้และหลับใหลไปตลอดกาล',
-            'image_path' => 'images/q13_darkness.jpg',
+            'image_path' => 'images/game/q13_darkness.jpg',
             'order' => 13
         ]);
         $q13->choices()->createMany([
@@ -217,7 +217,7 @@ class GameSeeder extends Seeder
         $q14 = Question::create([
             'title' => 'The Reward',
             'scenario' => 'เทพธิดาปรากฏกายและมอบพรให้หนึ่งข้อ คุณจะขออะไร?',
-            'image_path' => 'images/q14_goddess.jpg',
+            'image_path' => 'images/game/q14_goddess.jpg',
             'order' => 14
         ]);
         $q14->choices()->createMany([
@@ -231,7 +231,7 @@ class GameSeeder extends Seeder
         $q15 = Question::create([
             'title' => 'Reincarnation',
             'scenario' => 'การเดินทางสิ้นสุดลง... วิญญาณของคุณกำลังจะจุติใหม่ แสงสว่างวาบขึ้น... คุณปรารถนาจะเป็นสิ่งใด?',
-            'image_path' => 'images/q15_rebirth.jpg',
+            'image_path' => 'images/game/q15_rebirth.jpg',
             'order' => 15
         ]);
         $q15->choices()->createMany([
