@@ -21,4 +21,5 @@ Route::get('/game/analyze', [GameController::class, 'analyze'])->name('game.anal
 Route::get('/game/error', [GameController::class, 'error'])->name('game.error');
 
 // Visitor Stats
-Route::get('/stats', [App\Http\Controllers\StatsController::class, 'index']);
+Route::get('/stats', [App\Http\Controllers\StatsController::class, 'index'])->name('stats.index');
+Route::post('/feedback', [App\Http\Controllers\FeedbackController::class, 'store'])->name('feedback.store');
