@@ -54,6 +54,18 @@
                 🔊 Check Audio
             </button>
         </div>
+
+        {{-- Recommendations --}}
+        <div class="mt-8 text-neutral-500 text-xs font-light tracking-wider space-y-2 opacity-60">
+            <p class="flex items-center justify-center gap-2">
+                <span class="inline-block w-1 h-1 bg-neutral-600 rounded-full"></span>
+                แนะนำให้กด <span class="border border-neutral-700 px-1 rounded text-neutral-400">F11</span> เพื่อประสบการณ์เต็มจอ
+            </p>
+            <p class="flex items-center justify-center gap-2">
+                <span class="inline-block w-1 h-1 bg-neutral-600 rounded-full"></span>
+                ควรสวมหูฟัง 🎧 เพื่อบรรยากาศที่สมบูรณ์
+            </p>
+        </div>
     </div>
 
     <div class="absolute bottom-10 z-20 text-center space-y-2">
