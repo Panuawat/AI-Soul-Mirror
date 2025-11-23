@@ -14,7 +14,12 @@ class GameController extends Controller
     public function landing()
     {
         try {
-            $lostSouls = \App\Models\Visit::count();
+            // Set a short timeout for the count query
+            $lostSouls = \Illuminate\Support\Facades\DB::table('visits')
+                ->select(\Illuminate\Support\Facades\DB::raw('count(*) as count'))
+                ->get()
+                ->first()
+                ->count;
         } catch (\Exception $e) {
             $lostSouls = 0;
         }
