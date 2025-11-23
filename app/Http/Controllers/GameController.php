@@ -13,7 +13,11 @@ class GameController extends Controller
     // 0. หน้า Landing Page (หน้าแรกสุด)
     public function landing()
     {
-        $lostSouls = \App\Models\Visit::count();
+        try {
+            $lostSouls = \App\Models\Visit::count();
+        } catch (\Exception $e) {
+            $lostSouls = 0;
+        }
         return view('game.start', compact('lostSouls'));
     }
 
