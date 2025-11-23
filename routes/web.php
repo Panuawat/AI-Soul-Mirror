@@ -27,10 +27,16 @@ Route::post('/feedback', [App\Http\Controllers\FeedbackController::class, 'store
 // Temporary: Force re-seed database
 Route::get('/force-seed', function() {
     try {
+        // Run migrations first to ensure video_path column exists
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        
+        // Then reseed game data
         \Illuminate\Support\Facades\Artisan::call('db:seed', ['--class' => 'Database\\Seeders\\GameSeeder', '--force' => true]);
-        return 'Game data re-seeded successfully! <a href="/">Go to home</a>';
+        
+        return 'Migration and game data seeded successfully! <a href="/">Go to home</a>';
     } catch (\Exception $e) {
         return 'Error: ' . $e->getMessage();
     }
 });
+
 
