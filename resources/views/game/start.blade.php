@@ -44,6 +44,20 @@
             มีเพียงสัญชาตญาณและการตัดสินใจเท่านั้นที่จะบอกได้ว่า 
             <span class="text-white border-b border-neutral-600">วิญญาณของคุณมีรูปร่างเป็นเช่นไร</span>"
         </p>
+
+        <div class="pt-10 space-y-4">
+            <a href="{{ route('game.start') }}" class="void-btn px-10 py-4 text-xl rounded-sm tracking-widest uppercase block w-full md:w-auto">
+                เข้าสู่มิติ (Start Journey)
+            </a>
+            
+            <button id="mute-btn" onclick="gameAudio.init(); gameAudio.toggleMute()" class="text-neutral-500 hover:text-white text-sm uppercase tracking-widest transition">
+                🔊 Check Audio
+            </button>
+        </div>
+
+        {{-- Recommendations --}}
+        <div class="mt-8 text-neutral-500 text-xs font-light tracking-wider space-y-2 opacity-60">
+            <p class="flex items-center justify-center gap-2">
                 <span class="inline-block w-1 h-1 bg-neutral-600 rounded-full"></span>
                 แนะนำให้กด <span class="border border-neutral-700 px-1 rounded text-neutral-400">F11</span> เพื่อประสบการณ์เต็มจอ
             </p>
